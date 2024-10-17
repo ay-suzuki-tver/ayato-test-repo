@@ -8,4 +8,11 @@ records = [
     ttl     = 300
     records = ["xxxxx"]
   },
+  {
+    name    = "domain-a"
+    type    = "CNAME"
+    alias   = false
+    ttl     = 300
+    records = ["xxxxx"]
+  },
 ]
