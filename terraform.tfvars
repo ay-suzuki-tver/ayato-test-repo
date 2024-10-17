@@ -22,4 +22,11 @@ records = [
     ttl     = 300
     records = ["xxxxx"]
   },
+  {
+    name    = "domain-d"
+    type    = "CNAME"
+    alias   = false
+    ttl     = 300
+    records = ["xxxxx"]
+  },
 ]
