@@ -1,0 +1,16 @@
+name: ayato s3 deploy
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  printLog:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: print log
+      run: echo "Hello!"
