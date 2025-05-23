@@ -6,11 +6,21 @@ on:
 permissions:
   contents: read
   id-token: write
-
+env:
+  ROLE_TO_ASSUME: arn:aws:iam::290876194138:role/ayato-s3-deploy-role
+  AWS_REGION: ap-northeast-1
 jobs:
   printLog:
     runs-on: ubuntu-latest
     
     steps:
-    - name: print log
-      run: echo "Hello!"
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: AWS Authenticate
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+        role-to-assume: ${{ env.ROLE_TO_ASSUME }}
+        aws-region: ${{ env.AWS_REGION }}
+    - name: Upload to S3
+      run: |
+        aws s3 cp sample.html s3://tver-sandbox-ayato-test/front/sample.html
