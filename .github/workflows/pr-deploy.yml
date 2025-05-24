@@ -1,7 +1,7 @@
 name: ayato s3 deploy
 
 on:
-  workflow_dispatch:
+  pull_request:
 
 permissions:
   contents: read
@@ -9,6 +9,8 @@ permissions:
 env:
   ROLE_TO_ASSUME: arn:aws:iam::290876194138:role/ayato-s3-deploy-role
   AWS_REGION: ap-northeast-1
+  PR_NUMBER: ${{ github.event.number }}
+
 jobs:
   upload-file:
     runs-on: ubuntu-latest
@@ -23,4 +25,4 @@ jobs:
         aws-region: ${{ env.AWS_REGION }}
     - name: Upload to S3
       run: |
-        aws s3 cp sample.html s3://tver-sandbox-ayato-test/front/sample.html
+        aws s3 cp sample.html s3://tver-sandbox-ayato-test/front/${{ env.PR_NUMBER }}/sample.html
