@@ -25,4 +25,5 @@ jobs:
         aws-region: ${{ env.AWS_REGION }}
     - name: Upload to S3
       run: |
+        echo "Deploying to S3 for PR #${{ env.PR_NUMBER }}" > sample.html
         aws s3 cp sample.html s3://tver-sandbox-ayato-test/front/pr${{ env.PR_NUMBER }}/sample.html
